@@ -7,27 +7,27 @@ describe('Todo.vue', () => {
   it('filters todos correctly based on selected filter', async () => {
     const wrapper = mount(Todo)
 
-    // Set initial todos
+    
     await wrapper.vm.todos.push(
-      { id: 1, text: 'Short' },         // 5 chars
-      { id: 2, text: 'This is long' }   // > 10 chars
+      { id: 1, text: 'Short' },        
+      { id: 2, text: 'This is long' }  
     )
 
-    // Set filter to 'short'
+    
     wrapper.vm.filter = 'short'
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.filteredTodos.length).toBe(1)
     expect(wrapper.vm.filteredTodos[0].text).toBe('Short')
 
-    // Set filter to 'long'
+    
     wrapper.vm.filter = 'long'
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.filteredTodos.length).toBe(1)
     expect(wrapper.vm.filteredTodos[0].text).toBe('This is long')
 
-    // Filter to 'all'
+    
     wrapper.vm.filter = 'all'
     await wrapper.vm.$nextTick()
 
@@ -38,11 +38,11 @@ describe('Todo.vue', () => {
   const wrapper = mount(Todo)
   const input = wrapper.find('input')
 
-  // Simulate user typing
+  
   await input.setValue('Write test')
   await input.trigger('keydown.enter')
 
-  // Expect the list to include the new todo
+  
   const listItems = wrapper.findAll('li')
   expect(listItems.length).toBe(1)
   expect(listItems[0].text()).toContain('Write test')

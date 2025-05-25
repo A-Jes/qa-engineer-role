@@ -17,7 +17,6 @@ test('Todo app flow: add 3 todos, delete one, verify list', async ({ page }) => 
   await target.locator('button', { hasText: 'Delete' }).click()
   await page.screenshot({ path: 'after-delete.png' })
 
-  // 🧠 Correct way to verify deletion globally
   const texts = await page.locator('li').allTextContents()
   expect(texts).not.toContain('Fix bugs')
 
